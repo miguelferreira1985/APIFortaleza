@@ -13,11 +13,11 @@ namespace DAL
     {
         public  User dalValidateUser(User user)
         {
-            User validateUser = new User();
+            User userAuthenticated = new User();
 
             using (var command = new SqlCommand())
             {
-                command.Connection = Conexion.openDBConeccion();
+                command.Connection = Conexion.OpenDBConeccion();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "spValidateUser";
 
@@ -28,17 +28,17 @@ namespace DAL
 
                 if (reader.Read())
                 {
-                    validateUser.UserName = reader.GetString(0);
-                    validateUser.UserRoles = reader.GetString(1);
+                    userAuthenticated.UserName = reader.GetString(0);
+                    userAuthenticated.UserRoles = reader.GetString(1);
                 }
                 else
                 {
-                    validateUser = null;
+                    userAuthenticated = null;
                 }
 
-                Conexion.closeDBConnection();
+                Conexion.CloseDBConnection();
 
-                return validateUser;
+                return userAuthenticated;
             }
         }
     }

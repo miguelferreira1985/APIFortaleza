@@ -22,9 +22,9 @@ namespace Repository
 
             dalUser = new DALUser();
 
-            var validateUser = dalUser.dalValidateUser(user);
+            var userAuthenticated = dalUser.dalValidateUser(user);
 
-            return validateUser;
+            return userAuthenticated;
         }
     }
 }

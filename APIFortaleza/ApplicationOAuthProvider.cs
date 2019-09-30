@@ -7,6 +7,7 @@ using System.Web;
 using Entities;
 using Repository;
 using System.Security.Claims;
+using Microsoft.Owin.Security;
 
 namespace APIFortaleza
 {
@@ -28,15 +29,35 @@ namespace APIFortaleza
 
             if (user == null)
             {
-                context.SetError("invalid_grant", "Usario y Password son incorrectos");
+                context.SetError("Acceso Negado", "Usario y Password son incorrectos");
                 return;
             }
+
+
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Role, user.UserRoles));
             identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
 
-            context.Validated(identity);
+            var properties = new AuthenticationProperties(new Dictionary<string, string>
+            {
+                { "userName", user.UserName },
+                { "role", user.UserRoles }
+            });
+
+            var ticket = new AuthenticationTicket(identity, properties);
+
+            context.Validated(ticket);
+        }
+
+      
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context){
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
+
+            return Task.FromResult<object>(null);
         }
 
     }

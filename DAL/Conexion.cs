@@ -12,7 +12,7 @@ namespace DAL
     {
         static SqlConnection databaseConnection = null;
 
-        public static SqlConnection getDBConnection()
+        public static SqlConnection GetDBConnection()
         {
             if (databaseConnection == null)
             {
@@ -24,9 +24,9 @@ namespace DAL
             return databaseConnection;
         }
 
-        public static SqlConnection openDBConeccion()
+        public static SqlConnection OpenDBConeccion()
         {
-            var connectionStatus = getDBConnection();
+            var connectionStatus = GetDBConnection();
 
             if (connectionStatus.State == ConnectionState.Closed)
             {
@@ -36,9 +36,9 @@ namespace DAL
             return connectionStatus;
         }
 
-        public static SqlConnection closeDBConnection()
+        public static SqlConnection CloseDBConnection()
         {
-            var connectionStatus = getDBConnection();
+            var connectionStatus = GetDBConnection();
 
             if (connectionStatus.State == ConnectionState.Open)
             {
