@@ -21,7 +21,7 @@ namespace APIFortaleza
             {
                 TokenEndpointPath = new PathString("/token"),
                 Provider = new ApplicationOAuthProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(10),
                 AllowInsecureHttp = true
             };
 

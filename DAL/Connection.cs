@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
-    public class Conexion
+    public class Connection
     {
         static SqlConnection databaseConnection = null;
 
@@ -16,7 +16,7 @@ namespace DAL
         {
             if (databaseConnection == null)
             {
-                string connectionString = @"Server=FERREIRAPC\SQL;Database=fortaleza_db;Trusted_Connection=True;";
+                string connectionString = @"Server=MIGUELPC\SQLEXPRESS;Database=fortaleza_db;Trusted_Connection=True;";
 
                 databaseConnection = new SqlConnection(connectionString);
             }

@@ -17,7 +17,7 @@ namespace DAL
 
             using (var command = new SqlCommand())
             {
-                command.Connection = Conexion.OpenDBConeccion();
+                command.Connection = Connection.OpenDBConeccion();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "spValidateUser";
 
@@ -36,7 +36,7 @@ namespace DAL
                     userAuthenticated = null;
                 }
 
-                Conexion.CloseDBConnection();
+                Connection.CloseDBConnection();
 
                 return userAuthenticated;
             }

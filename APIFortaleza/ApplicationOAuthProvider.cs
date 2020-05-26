@@ -29,7 +29,7 @@ namespace APIFortaleza
 
             if (user == null)
             {
-                context.SetError("Acceso Negado", "Usario y Password son incorrectos");
+                context.SetError("Acceso Negado", "Usario o Password incorrectos");
                 return;
             }
 
