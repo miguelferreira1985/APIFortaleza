@@ -14,6 +14,8 @@ namespace APIFortaleza.Controllers
     public class PresentationController : ApiController
     {
         PresentationRepository presentationRepository;
+
+        [HttpGet]
         public IHttpActionResult GetActivePresentations()
         {
             presentationRepository = new PresentationRepository();

@@ -21,8 +21,8 @@ namespace DAL
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "spGetActivePresentations";
 
-                SqlDataAdapter da = new SqlDataAdapter(command);
-                da.Fill(dt);
+                SqlDataAdapter daPresentation = new SqlDataAdapter(command);
+                daPresentation.Fill(dt);
 
                 Connection.CloseDBConnection();
 
@@ -35,7 +35,10 @@ namespace DAL
                     presentation.Name = row[1].ToString();
                     presentation.Abbrevation = row[2].ToString();
                     presentation.Descripton = row[3].ToString();
-                    presentation.IsActivated = Convert.ToBoolean(row[4]);
+                    presentation.ModifiedDate = Convert.ToDateTime(row[4]);
+                    presentation.CreatedDate = Convert.ToDateTime(row[5]);
+                    presentation.IsActivated = Convert.ToBoolean(row[6]);
+
 
                     presentationList.Add(presentation);
                 }
